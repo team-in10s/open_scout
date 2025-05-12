@@ -19,6 +19,11 @@
             --accent-teal: #0DB2AC;
         }
         
+        body, p, h1, h2, h3, h4, h5, h6, span, .text-xl, .text-lg, .text-base, .text-sm, .text-gray-300, .text-gray-400, .font-bold, .font-medium {
+          word-break: keep-all;
+          white-space: normal;
+        }
+        
         body {
             font-family: 'Noto Sans KR', sans-serif;
             background-color: var(--space-dark);
@@ -770,6 +775,26 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        @media (max-width: 768px) {
+          .position-indicator {
+            position: fixed;
+            flex-direction: row;
+            bottom: 20px;
+            top: auto;
+            left: 50%;
+            right: auto;
+            transform: translateX(-50%);
+            width: auto;
+            gap: 10px;
+            /* Removed overflow-x: visible !important; so PC is unaffected */
+            z-index: 100;
+          }
+          .position-indicator-dot,
+          .position-indicator-label {
+            /* Optionally adjust size or spacing for mobile */
+          }
+        }
     </style>
 </head>
 <body>
@@ -783,7 +808,7 @@
     </div>
     
     <!-- Hero Section -->
-    <section class="section relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden">
+    <section class="section relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden" id="hero">
         <!-- Background Image -->
         <!-- 이미지 생성 프롬프트: 매끈하고 현대적인 우주복을 입은 한 명의 우주인이 약간 측면 각도에서 자신 앞에 떠 있는 크고 빛나는 홀로그램 인터페이스를 골똘히 응시하고 있습니다. 이 인터페이스는 하나의 이력서가 '네카라쿠배당토'에서 영감을 받은 권위 있는 기술 기업들을 나타내는 스타일화된 아이콘들을 향해 뻗어 나가는 여러 개의 연결선으로 변환되는 모습을 동적으로 시각화하여, 수많은 스카우트 제안을 상징합니다. 배경은 먼 성운, 소용돌이치는 은하수, 반짝이는 별들이 있는 숨 막힐 듯 아름다운 깊은 우주 풍경으로, 끝없는 새로운 직업적 가능성과 발견의 느낌을 불러일으킵니다. 전체적인 스타일은 고품질의 영화적이고 사실적인 사진이어야 합니다. 주조색은 깊은 우주의 파란색과 보라색 계열이어야 하며, 홀로그램 인터페이스는 희망차고 밝은 빛(사이트 테마의 --accent-blue인 #4B6BFB 및 --accent-purple인 #8257E5 음영)을 발산해야 합니다. 우주인이 명확한 주인공임을 보장하고, 인터페이스가 '한 번 제출하면 많은 제안을 받는' 개념을 미묘하게 전달해야 합니다. 이미지는 커리어 플랫폼에 적합한 전문적이고 영감을 주는 톤을 유지해야 합니다. -->
         <img src="img/01.png" alt="새로운 커리어 기회를 모색하는 우주인" class="absolute inset-0 w-full h-full object-cover opacity-60 z-0">
@@ -872,288 +897,6 @@
         
         <div class="absolute left-10 top-1/4 opacity-20 pointer-events-none">
             <p class="italic text-xs opacity-0">망원경을 통해 별을 보는 사람의 실루엣 이미지</p>
-        </div>
-    </section> -->
-
-    <!-- Solution Section -->
-    <section class="section py-20 px-4">
-        <div class="container mx-auto max-w-6xl">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6">놀라운 제안들이 당신을 기다립니다</h2>
-                <p class="text-xl text-gray-300 max-w-2xl mx-auto">
-                    지원전에, 자신의 시장 가치부터 확인하세요
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-                <div class="relative">
-                    <div class="relative p-6 rounded-2xl shadow-lg" style="background: linear-gradient(145deg, #1a1f38, #131729); border: 1px solid rgba(113, 128, 255, 0.2);">
-                        <!-- Email Preview Frame -->
-                        <div class="mb-4 flex items-center justify-between">
-                            <div class="flex items-center">
-                                <div class="w-3 h-3 rounded-full bg-red-500 mr-2"></div>
-                                <div class="w-3 h-3 rounded-full bg-yellow-500 mr-2"></div>
-                                <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                            </div>
-                            <div class="text-xs text-gray-400">From: scoutmail.me</div>
-                        </div>
-                        
-                        <div class="bg-space-dark rounded-xl border border-gray-800 overflow-hidden shadow-lg">
-                            <!-- Email Navigation Bar -->
-                            <div class="bg-space-medium border-b border-gray-800 p-3 flex justify-between items-center">
-                                <div class="flex space-x-3">
-                                    <button class="text-xs px-2 py-1 bg-accent-blue bg-opacity-20 text-accent-blue rounded">받은제안함</button>
-                                    <button class="text-xs px-2 py-1 text-gray-400 hover:bg-gray-800 rounded">관심표현</button>
-                                </div>
-                                <div>
-                                    <i class="fas fa-cog text-gray-400"></i>
-                                </div>
-                            </div>
-                            
-                            <!-- Email Content -->
-                            <div class="p-4">
-                                <div class="mt-2 bg-space-dark rounded-lg p-4 border border-gray-800">
-                                    <div class="border-b border-gray-700 pb-3 mb-3">
-                                        <div class="flex justify-between items-center">
-                                            <h4 class="font-medium">N사 클라우드 리더십 포지션 제안 드립니다</h4>
-                                            <span class="text-xs bg-yellow-700 text-yellow-300 px-2 py-1 rounded-full">TOP COMPANY</span>
-                                        </div>
-                                        <p class="text-sm text-gray-400 mt-1">N컴퍼니 채용팀 &lt;hr@n.com&gt; → me@scoutmail.me</p>
-                                    </div>
-                                    <p class="text-sm mb-3">
-                                        안녕하세요! N컴퍼니에서 귀하의 뛰어난 경력에 깊은 인상을 받아 클라우드 기술 리더 포지션을 제안 드립니다. 업계 최고 수준의 대우와 함께 성장의 기회를 놓치지 마세요! (예상 연봉: 1.2억~1.5억원)
-                                    </p>
-                                    <div class="flex space-x-2">
-                                        <button class="text-xs px-3 py-1 bg-blue-900 bg-opacity-40 text-blue-300 rounded-full hover:bg-opacity-60 transition">자세히 보기</button>
-                                        <button class="text-xs px-3 py-1 bg-gray-800 bg-opacity-40 text-gray-300 rounded-full hover:bg-opacity-60 transition">관심 없음</button>
-                                    </div>
-                                </div>
-                                
-                                <div class="mt-4 bg-space-dark rounded-lg p-4 border border-gray-800">
-                                    <div class="border-b border-gray-700 pb-3 mb-3">
-                                        <div class="flex justify-between items-center">
-                                            <h4 class="font-medium">K플랫폼 서비스 인프라 리드 영입 제안</h4>
-                                            <span class="text-xs bg-yellow-700 text-yellow-300 px-2 py-1 rounded-full">TOP COMPANY</span>
-                                        </div>
-                                        <p class="text-sm text-gray-400 mt-1">K플랫폼 헤드헌터 &lt;HR@k.com&gt; → me@scoutmail.me</p>
-                                    </div>
-                                    <p class="text-sm mb-3">
-                                        K플랫폼의 핵심 서비스 인프라를 이끌어갈 실력 있는 리더를 찾고 있습니다. 귀하의 프로필이 저희가 찾는 인재상과 부합하여 연락드렸습니다. (예상 연봉: 1.1억~1.4억원 + 스톡옵션)
-                                    </p>
-                                    <div class="flex space-x-2">
-                                        <button class="text-xs px-3 py-1 bg-blue-900 bg-opacity-40 text-blue-300 rounded-full hover:bg-opacity-60 transition">자세히 보기</button>
-                                        <button class="text-xs px-3 py-1 bg-gray-800 bg-opacity-40 text-gray-300 rounded-full hover:bg-opacity-60 transition">관심 없음</button>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="absolute -bottom-6 -right-6 z-10">
-                        <div class="bg-accent-purple bg-opacity-20 p-4 rounded-full text-center">
-                        </div>
-                    </div>
-                </div>
-                
-                <div>
-                    <div class="mb-10">
-                        <div class="flex items-start mb-6">
-                            <div class="bg-accent-blue bg-opacity-20 p-3 rounded-full mr-4">
-                                <i class="fas fa-building text-accent-blue"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold mb-2">최고 기업들의 이직 제안</h3>
-                                <p class="text-gray-300">
-                                    네카라쿠배당토, 대기업, 유망 스타트업까지!<br>
-                                    단기간동안 집중적으로 프로필이 노출됩니다.
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start mb-6">
-                            <div class="bg-accent-purple bg-opacity-20 p-3 rounded-full mr-4">
-                                <i class="fas fa-chart-line text-accent-purple"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold mb-2">커리어 점프업의 기회</h3>
-                                <p class="text-gray-300">
-                                    현재보다 훨씬 높은 연봉과 더 나은 조건의 제안!<br>
-                                    이직 시장에서 가치를 새롭게 평가받으세요.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start mb-6">
-                            <div class="bg-accent-blue bg-opacity-20 p-3 rounded-full mr-4">
-                                <i class="fas fa-globe text-accent-blue"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold mb-2">다중 채널 동시 노출</h3>
-                                <p class="text-gray-300">
-                                    40개 이상의 채용 플랫폼, 서치펌, 헤드헌터에게<br>
-                                    한 번에 노출! 더 많은 기회, 더 빠른 제안.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start mb-6">
-                            <div class="bg-accent-purple bg-opacity-20 p-3 rounded-full mr-4">
-                                <i class="fas fa-sliders-h text-accent-purple"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold mb-2">유연한 수신 설정</h3>
-                                <p class="text-gray-300">
-                                    스카웃 제안 ON/OFF, 원하는 시점에만<br>
-                                    제안을 받고 싶을 때 자유롭게 설정하세요.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start mb-6">
-                            <div class="bg-accent-teal bg-opacity-20 p-3 rounded-full mr-4">
-                                <i class="fas fa-user-shield text-accent-teal"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold mb-2">개인정보/익명성 완벽 보호</h3>
-                                <p class="text-gray-300">
-                                    실명, 연락처, 현 직장 등 민감 정보는 절대 공개되지 않으며,<br>
-                                    <code>@scoutmail.me</code> 가상 메일로 안전하게 소통합니다.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How It Works Section - REWORKED & SIMPLIFIED -->
-    <section id="how-it-works" class="section py-20 px-4 bg-space-medium bg-opacity-30">
-        <div class="container mx-auto max-w-6xl">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6">단 3단계로 시작하는 커리어 여정</h2>
-                <p class="text-xl text-gray-300 max-w-2xl mx-auto">
-                    3분만에 커리어 가능성을 넓혀보세요.
-                </p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 text-center">
-                <!-- Step 1 -->
-                <div class="card p-8 transform hover:scale-105 transition-transform duration-300">
-                    <div class="text-5xl mb-6 gradient-text">
-                        <i class="fas fa-file-alt"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-3">1. 프로필 등록</h3>
-                    <p class="text-gray-300">
-                        기존에 사용하던 어떤 형태의 이력서든<br>간편하게 등록하세요.
-                    </p>
-                </div>
-                <!-- Step 2 -->
-                <div class="card p-8 transform hover:scale-105 transition-transform duration-300">
-                    <div class="text-5xl mb-6 gradient-text">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-3">2. 기업 네트워크 연결</h3>
-                    <p class="text-gray-300">
-                        40개 이상의 파트너 기업 및 채용 담당자가<br>프로필을 검토합니다.
-                    </p>
-                </div>
-                <!-- Step 3 -->
-                <div class="card p-8 transform hover:scale-105 transition-transform duration-300">
-                   <div class="text-5xl mb-6 gradient-text">
-                        <i class="fas fa-envelope-open-text"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-3">3. 스카웃 제안 수신</h3>
-                    <p class="text-gray-300">
-                        3주동안 기업들로부터<br>매력적인 제안들을 받아보세요!
-                    </p>
-                </div>
-            </div>
-            
-            <div class="mt-16 text-center">
-                 <a href="#open-positions" class="btn-primary text-lg font-medium px-8 py-4">
-                    <i class="fas fa-paper-plane mr-2"></i> 지금 바로 제안 받기 시작 &gt;
-                </a>
-            </div>
-        </div>
-        
-        <div class="absolute right-10 bottom-1/4 opacity-20 pointer-events-none">
-            <p class="italic text-xs opacity-0">우주 공간에서 연결되는 노드와 네트워크 이미지</p>
-        </div>
-    </section>
-
-    <!-- About Project & Benefits Section Combined -->
-    <!-- <section class="section py-20 px-4">
-        <div class="container mx-auto max-w-6xl">
-            <div class="text-center mb-12">
-                <span class="px-4 py-1 rounded-full bg-blue-900 bg-opacity-30 text-blue-300 text-sm mb-6 inline-block">
-                    <i class="fas fa-bolt mr-1"></i> SPOTLIGHT
-                </span>
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">커리어의 새로운 가능성</h2>
-                <p class="text-xl text-gray-300 max-w-2xl mx-auto">
-                    여러분의 역량에 맞는 기회를 발견하고, 지금 바로 혜택을 누리세요
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-                <div class="card p-6 bg-space-light bg-opacity-50">
-                    <div class="text-accent-purple text-4xl mb-5">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">10%+ 연봉 상승</h3>
-                    <p class="text-gray-300">
-                        현재 연봉보다 평균 10% 이상 높은 제안을 받을 수 있습니다. 최대 연봉 인상은 50% 이상. 연봉 협상의 주도권을 가져가세요.
-                    </p>
-                </div>
-                
-                <div class="card p-6 bg-space-light bg-opacity-50">
-                    <div class="text-accent-blue text-4xl mb-5">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">24시간 내 채용 제안</h3>
-                    <p class="text-gray-300">
-                        최소 1건 이상의 채용 제안이 24시간 내에 도착합니다. 대부분 3~5건의 제안을 받게 됩니다. 선택의 폭이 넓어집니다.
-                    </p>
-                </div>
-                
-                <div class="card p-6 bg-space-light bg-opacity-50">
-                    <div class="text-accent-teal text-4xl mb-5">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">개인정보 완전 보호</h3>
-                    <p class="text-gray-300">
-                        실명, 연락처, 현 직장명 등 민감한 정보는 완전 비공개로 유지됩니다. 안전하게 새로운 기회를 탐색하세요.
-                    </p>
-                </div>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="card p-6 bg-space-light bg-opacity-50">
-                    <div class="text-accent-blue text-4xl mb-5">
-                        <i class="fas fa-globe"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">다중 채널 동시 노출</h3>
-                    <p class="text-gray-300">
-                        40개 이상의 채용 스타트업, 서치펌, 헤드헌팅 업체에 동시에 노출됩니다. 다양한 기회를 한 번에 접할 수 있습니다.
-                    </p>
-                </div>
-                
-                <div class="card p-6 bg-space-light bg-opacity-50">
-                    <div class="text-accent-purple text-4xl mb-5">
-                        <i class="fas fa-sliders-h"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">유연한 수신 설정</h3>
-                    <p class="text-gray-300">
-                        언제든지 스카우트 수신을 ON/OFF 전환할 수 있어 상황에 맞게 조절 가능합니다. 여러분의 편의에 맞게 설정하세요.
-                    </p>
-                </div>
-            </div>
-            
-            <div class="text-center mt-12">
-                <a href="#open-positions" class="btn-primary text-lg font-medium px-8 py-4">
-                    <i class="fas fa-paper-plane mr-2"></i> 이력서 제출하기
-                </a>
-            </div>
         </div>
     </section> -->
 
@@ -1355,6 +1098,289 @@
             </div>
         </div>
     </section>
+
+    <!-- How It Works Section - REWORKED & SIMPLIFIED -->
+    <section id="benefits" class="section py-20 px-4 bg-space-medium bg-opacity-30">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">단 3단계로 시작하는 커리어 여정</h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                    3분만에 커리어 가능성을 넓혀보세요.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 text-center">
+                    <!-- Step 1 -->
+                <div class="card p-8 transform hover:scale-105 transition-transform duration-300">
+                    <div class="text-5xl mb-6 gradient-text">
+                        <i class="fas fa-file-alt"></i>
+                            </div>
+                    <h3 class="text-2xl font-bold mb-3">1. 프로필 등록</h3>
+                    <p class="text-gray-300">
+                        기존에 사용하던 어떤 형태의 이력서든<br>간편하게 등록하세요.
+                    </p>
+                    </div>
+                    <!-- Step 2 -->
+                <div class="card p-8 transform hover:scale-105 transition-transform duration-300">
+                    <div class="text-5xl mb-6 gradient-text">
+                        <i class="fas fa-users"></i>
+                            </div>
+                    <h3 class="text-2xl font-bold mb-3">2. 기업 네트워크 연결</h3>
+                    <p class="text-gray-300">
+                        40개 이상의 파트너 기업 및 채용 담당자가<br>프로필을 검토합니다.
+                    </p>
+                    </div>
+                    <!-- Step 3 -->
+                <div class="card p-8 transform hover:scale-105 transition-transform duration-300">
+                   <div class="text-5xl mb-6 gradient-text">
+                        <i class="fas fa-envelope-open-text"></i>
+                            </div>
+                    <h3 class="text-2xl font-bold mb-3">3. 스카웃 제안 수신</h3>
+                    <p class="text-gray-300">
+                        3주동안 기업들로부터<br>매력적인 제안들을 받아보세요!
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center">
+                 <a href="#open-positions" class="btn-primary text-lg font-medium px-8 py-4">
+                    <i class="fas fa-paper-plane mr-2"></i> 지금 바로 제안 받기 시작 &gt;
+                </a>
+            </div>
+        </div>
+        
+        <div class="absolute right-10 bottom-1/4 opacity-20 pointer-events-none">
+            <p class="italic text-xs opacity-0">우주 공간에서 연결되는 노드와 네트워크 이미지</p>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="section py-20 px-4" id="solution">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">놀라운 제안들이 당신을 기다립니다</h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                    지원전에, 자신의 시장 가치부터 확인하세요
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                <div class="relative">
+                    <div class="relative p-6 rounded-2xl shadow-lg" style="background: linear-gradient(145deg, #1a1f38, #131729); border: 1px solid rgba(113, 128, 255, 0.2);">
+                        <!-- Email Preview Frame -->
+                        <div class="mb-4 flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 rounded-full bg-red-500 mr-2"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500 mr-2"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            </div>
+                            <div class="text-xs text-gray-400">From: scoutmail.me</div>
+                        </div>
+                        
+                        <div class="bg-space-dark rounded-xl border border-gray-800 overflow-hidden shadow-lg">
+                            <!-- Email Navigation Bar -->
+                            <div class="bg-space-medium border-b border-gray-800 p-3 flex justify-between items-center">
+                                <div class="flex space-x-3">
+                                    <button class="text-xs px-2 py-1 bg-accent-blue bg-opacity-20 text-accent-blue rounded">받은제안함</button>
+                                    <button class="text-xs px-2 py-1 text-gray-400 hover:bg-gray-800 rounded">관심표현</button>
+                                </div>
+                                <div>
+                                    <i class="fas fa-cog text-gray-400"></i>
+                                </div>
+                            </div>
+                            
+                            <!-- Email Content -->
+                            <div class="p-4">
+                                <div class="mt-2 bg-space-dark rounded-lg p-4 border border-gray-800">
+                                    <div class="border-b border-gray-700 pb-3 mb-3">
+                                        <div class="flex justify-between items-center">
+                                            <h4 class="font-medium">N사 클라우드 리더십</h4>
+                                            <span class="text-xs bg-yellow-700 text-yellow-300 px-2 py-1 rounded-full">TOP COMPANY</span>
+                                        </div>
+                                        <!-- <p class="text-sm text-gray-400 mt-1">N컴퍼니 채용팀 &lt;hr@n.com&gt; → me@scoutmail.me</p> -->
+                                    </div>
+                                    <p class="text-sm mb-3">
+                                        안녕하세요! N컴퍼니에서 클라우드 기술 리더 포지션을 제안 드립니다. (예상 연봉: 1.2억~1.5억원)
+                                    </p>
+                                    <div class="flex space-x-2">
+                                        <button class="text-xs px-3 py-1 bg-blue-900 bg-opacity-40 text-blue-300 rounded-full hover:bg-opacity-60 transition">자세히 보기</button>
+                                        <button class="text-xs px-3 py-1 bg-gray-800 bg-opacity-40 text-gray-300 rounded-full hover:bg-opacity-60 transition">관심 없음</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-4 bg-space-dark rounded-lg p-4 border border-gray-800">
+                                    <div class="border-b border-gray-700 pb-3 mb-3">
+                                        <div class="flex justify-between items-center">
+                                            <h4 class="font-medium">K플랫폼 서비스 인프라 리드</h4>
+                                            <span class="text-xs bg-yellow-700 text-yellow-300 px-2 py-1 rounded-full">TOP COMPANY</span>
+                                        </div>
+                                        <!-- <p class="text-sm text-gray-400 mt-1">K플랫폼 헤드헌터 &lt;HR@k.com&gt; → me@scoutmail.me</p> -->
+                                    </div>
+                                    <p class="text-sm mb-3">
+                                        K플랫폼의 핵심 서비스 인프라를 이끌어갈 실력 있는 리더를 찾고 있습니다. 저희가 찾는 인재상과 부합하여 연락드렸습니다. (예상 연봉: 1.1억~1.4억원 + 스톡옵션)
+                                    </p>
+                                    <div class="flex space-x-2">
+                                        <button class="text-xs px-3 py-1 bg-blue-900 bg-opacity-40 text-blue-300 rounded-full hover:bg-opacity-60 transition">자세히 보기</button>
+                                        <button class="text-xs px-3 py-1 bg-gray-800 bg-opacity-40 text-gray-300 rounded-full hover:bg-opacity-60 transition">관심 없음</button>
+                                    </div>
+                                </div>
+                                
+                                        </div>
+                        </div>
+                    </div>
+                    
+                    <div class="absolute -bottom-6 -right-6 z-10">
+                        <div class="bg-accent-purple bg-opacity-20 p-4 rounded-full text-center">
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="mb-10">
+                        <div class="flex items-start mb-6">
+                            <div class="bg-accent-blue bg-opacity-20 p-3 rounded-full mr-4">
+                                <i class="fas fa-building text-accent-blue"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">최고 기업들의 이직 제안</h3>
+                                <p class="text-gray-300">
+                                    네카라쿠배당토, 대기업, 유망 스타트업까지!<br>
+                                    단기간동안 집중적으로 프로필이 노출됩니다.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start mb-6">
+                            <div class="bg-accent-purple bg-opacity-20 p-3 rounded-full mr-4">
+                                <i class="fas fa-chart-line text-accent-purple"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">커리어 점프업의 기회</h3>
+                                <p class="text-gray-300">
+                                    현재보다 훨씬 높은 연봉과 더 나은 조건의 제안!<br>
+                                    이직 시장에서 가치를 새롭게 평가받으세요.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start mb-6">
+                            <div class="bg-accent-blue bg-opacity-20 p-3 rounded-full mr-4">
+                                <i class="fas fa-globe text-accent-blue"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">다중 채널 동시 노출</h3>
+                                <p class="text-gray-300">
+                                    40개 이상의 채용 플랫폼, 서치펌, 헤드헌터에게<br>
+                                    한 번에 노출! 더 많은 기회, 더 빠른 제안.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start mb-6">
+                            <div class="bg-accent-purple bg-opacity-20 p-3 rounded-full mr-4">
+                                <i class="fas fa-sliders-h text-accent-purple"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">유연한 수신 설정</h3>
+                                <p class="text-gray-300">
+                                    스카웃 제안 ON/OFF, 원하는 시점에만<br>
+                                    제안을 받고 싶을 때 자유롭게 설정하세요.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start mb-6">
+                            <div class="bg-accent-teal bg-opacity-20 p-3 rounded-full mr-4">
+                                <i class="fas fa-user-shield text-accent-teal"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">개인정보/익명성 완벽 보호</h3>
+                                <p class="text-gray-300">
+                                    실명, 연락처, 현 직장 등 민감 정보는 절대 공개되지 않으며,<br>
+                                    <code>@scoutmail.me</code> 가상 메일로 안전하게 소통합니다.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Project & Benefits Section Combined -->
+    <!-- <section class="section py-20 px-4">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-12">
+                <span class="px-4 py-1 rounded-full bg-blue-900 bg-opacity-30 text-blue-300 text-sm mb-6 inline-block">
+                    <i class="fas fa-bolt mr-1"></i> SPOTLIGHT
+                </span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">커리어의 새로운 가능성</h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                    여러분의 역량에 맞는 기회를 발견하고, 지금 바로 혜택을 누리세요
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <div class="card p-6 bg-space-light bg-opacity-50">
+                    <div class="text-accent-purple text-4xl mb-5">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">10%+ 연봉 상승</h3>
+                    <p class="text-gray-300">
+                        현재 연봉보다 평균 10% 이상 높은 제안을 받을 수 있습니다. 최대 연봉 인상은 50% 이상. 연봉 협상의 주도권을 가져가세요.
+                    </p>
+                </div>
+                
+                <div class="card p-6 bg-space-light bg-opacity-50">
+                    <div class="text-accent-blue text-4xl mb-5">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">24시간 내 채용 제안</h3>
+                    <p class="text-gray-300">
+                        최소 1건 이상의 채용 제안이 24시간 내에 도착합니다. 대부분 3~5건의 제안을 받게 됩니다. 선택의 폭이 넓어집니다.
+                    </p>
+                </div>
+                
+                <div class="card p-6 bg-space-light bg-opacity-50">
+                    <div class="text-accent-teal text-4xl mb-5">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">개인정보 완전 보호</h3>
+                    <p class="text-gray-300">
+                        실명, 연락처, 현 직장명 등 민감한 정보는 완전 비공개로 유지됩니다. 안전하게 새로운 기회를 탐색하세요.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card p-6 bg-space-light bg-opacity-50">
+                    <div class="text-accent-blue text-4xl mb-5">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">다중 채널 동시 노출</h3>
+                    <p class="text-gray-300">
+                        40개 이상의 채용 스타트업, 서치펌, 헤드헌팅 업체에 동시에 노출됩니다. 다양한 기회를 한 번에 접할 수 있습니다.
+                    </p>
+                </div>
+                
+                <div class="card p-6 bg-space-light bg-opacity-50">
+                    <div class="text-accent-purple text-4xl mb-5">
+                        <i class="fas fa-sliders-h"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">유연한 수신 설정</h3>
+                    <p class="text-gray-300">
+                        언제든지 스카우트 수신을 ON/OFF 전환할 수 있어 상황에 맞게 조절 가능합니다. 여러분의 편의에 맞게 설정하세요.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#open-positions" class="btn-primary text-lg font-medium px-8 py-4">
+                    <i class="fas fa-paper-plane mr-2"></i> 이력서 제출하기
+                </a>
+            </div>
+        </div>
+    </section> -->
+
 
     <!-- Final CTA Section -->
     <section class="section py-20 px-4 bg-space-dark relative overflow-hidden">
@@ -1672,7 +1698,7 @@
                                     <p class="text-xl text-gray-300 max-w-2xl mx-auto">
                                         오픈 데이터 프로젝트를 통해 파트너 기업과 함께 더 나은 경험을 제공합니다
                                     </p>
-                                </div>
+                </div>
                                 
                                 <!-- Horizontal Timeline Section -->
                                 <div class="timeline-scroll-container">
@@ -1881,7 +1907,7 @@
         </div>
 
         <!-- Existing Modal Content Wrapper - ADD AN ID TO THIS WRAPPER -->
-        <div id="modal-content-wrapper" class="bg-space-medium p-6 md:p-8 rounded-2xl max-w-xl md:max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-accent-blue border-opacity-30 shadow-xl">
+        <div id="modal-content-wrapper" class="bg-space-medium rounded-2xl max-w-xl md:max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-accent-blue border-opacity-30 shadow-xl">
             <iframe data-tally-src="https://tally.so/embed/mDYMxZ?hideTitle=1&dynamicHeight=1" loading="lazy" width="100%" height="109" frameborder="0" marginheight="0" marginwidth="0" title="스카웃 제안 받기"></iframe>
             <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
         </div>
@@ -1893,33 +1919,40 @@
             <div class="position-indicator-dot"></div>
             <div class="position-indicator-label">홈</div>
         </div>
-        <div class="position-indicator-item" data-section="problems">
+        <div class="position-indicator-item" data-section="open-positions">
+            <div class="position-indicator-dot"></div>
+            <div class="position-indicator-label">모집 포지션</div>
+        </div>
+        <!-- <div class="position-indicator-item" data-section="problems">
             <div class="position-indicator-dot"></div>
             <div class="position-indicator-label">후보자 문제</div>
+        </div> -->
+        <div class="position-indicator-item" data-section="benefits">
+            <div class="position-indicator-dot"></div>
+            <div class="position-indicator-label">진행 방식</div>
         </div>
         <div class="position-indicator-item" data-section="solution">
             <div class="position-indicator-dot"></div>
             <div class="position-indicator-label">솔루션</div>
         </div>
-        <div class="position-indicator-item" data-section="benefits">
-            <div class="position-indicator-dot"></div>
-            <div class="position-indicator-label">혜택</div>
-        </div>
-        <div class="position-indicator-item" data-section="roadmap">
-            <div class="position-indicator-dot"></div>
-            <div class="position-indicator-label">로드맵</div>
-        </div>
-        <div class="position-indicator-item" data-section="open-positions">
-            <div class="position-indicator-dot"></div>
-            <div class="position-indicator-label">모집 포지션</div>
-        </div>
         <div class="position-indicator-item" data-section="for-companies">
             <div class="position-indicator-dot"></div>
             <div class="position-indicator-label">기업 협업</div>
         </div>
-        <div class="position-indicator-item" data-section="how-it-works"> <!-- Ensure this matches the section ID -->
-            <div class="position-indicator-dot"></div>
-            <div class="position-indicator-label">진행 방식</div>
+    </div>
+
+    <!-- Company Collaboration Modal (same style as Resume Submit Block) -->
+    <div id="company-collab-modal" class="fixed inset-0 bg-space-dark z-50 flex items-center justify-center p-4 hidden">
+        <!-- Spinner -->
+        <div id="company-modal-spinner" class="absolute inset-0 flex items-center justify-center bg-space-medium bg-opacity-90 z-10 hidden">
+            <div class="spinner-animation"></div>
+        </div>
+        <!-- Modal Content Wrapper -->
+        <div id="company-modal-content-wrapper" class="bg-space-medium rounded-2xl max-w-xl md:max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-accent-blue border-opacity-30 shadow-xl relative">
+            <!-- Close Button -->
+            <button id="close-company-modal" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl z-20" aria-label="Close">&times;</button>
+            <iframe data-tally-src="https://tally.so/embed/mDY9jE?hideTitle=1&dynamicHeight=1" loading="lazy" width="100%" height="109" frameborder="0" marginheight="0" marginwidth="0" title="협업 문의하기"></iframe>
+            <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
         </div>
     </div>
 
@@ -2341,7 +2374,7 @@
                         modalContentWrapper.classList.add('hidden'); // Hide actual content
                         modalSpinner.classList.remove('hidden');    // Show spinner
                         resumeSubmitBlock.classList.remove('hidden'); // Show modal background
-                        document.body.style.overflow = 'hidden'; // Prevent background scroll
+                    document.body.style.overflow = 'hidden'; // Prevent background scroll
 
                         setTimeout(() => {
                             modalSpinner.classList.add('hidden');       // Hide spinner
@@ -2576,9 +2609,6 @@
     </script>
 
     <script>
-        // ... existing code ...
-        
-        // Tab functionality
         document.addEventListener('DOMContentLoaded', function() {
             const tabButtons = document.querySelectorAll('.tab-button');
             const tabContents = document.querySelectorAll('.tab-content');
@@ -2598,6 +2628,51 @@
                 });
             });
         });
+    </script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- Company Collab Modal Logic ---
+        const collabBtn = document.querySelector('a.btn-primary[href^="mailto:robert@in10s.co"]');
+        const companyModal = document.getElementById('company-collab-modal');
+        const companyModalSpinner = document.getElementById('company-modal-spinner');
+        const companyModalContent = document.getElementById('company-modal-content-wrapper');
+        const closeCompanyModal = document.getElementById('close-company-modal');
+
+        if (collabBtn && companyModal && companyModalSpinner && companyModalContent) {
+            collabBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                companyModalContent.classList.add('hidden');
+                companyModalSpinner.classList.remove('hidden');
+                companyModal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+                setTimeout(() => {
+                    companyModalSpinner.classList.add('hidden');
+                    companyModalContent.classList.remove('hidden');
+                }, 3000);
+            });
+        }
+        // Close modal logic
+        if (closeCompanyModal) {
+            closeCompanyModal.addEventListener('click', function() {
+                companyModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+                companyModalSpinner.classList.add('hidden');
+                companyModalContent.classList.remove('hidden');
+            });
+        }
+        // Click outside to close
+        if (companyModal) {
+            companyModal.addEventListener('click', function(e) {
+                if (e.target === companyModal) {
+                    companyModal.classList.add('hidden');
+                    document.body.style.overflow = 'auto';
+                    companyModalSpinner.classList.add('hidden');
+                    companyModalContent.classList.remove('hidden');
+                }
+            });
+        }
+    });
     </script>
 </body>
 </html>
